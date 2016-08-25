@@ -1,4 +1,4 @@
-# Simple App off Of Wes Bos boiler plate 
+# PokeApp
 
 ## Running
 
@@ -9,3 +9,7 @@ Then run `npm start` and open <localhost:7770> in your browser.
 ## Production Build
 
 Run `npm build` to create a distro folder and a bundle.js file.
+
+## Credit
+
+https://github.com/wesbos/Learn-Redux-Starter-Files for boilerplate

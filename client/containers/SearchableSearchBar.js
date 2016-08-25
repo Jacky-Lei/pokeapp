@@ -1,17 +1,6 @@
-//container component - app.js
-
 import { connect } from 'react-redux';
 import SearchBar from '../components/SearchBar';
 import {fetchPokemon} from '../actions/actionCreators';
-
-
-let test = "test";
-
-const mapStateToProps = (state) => {
-  return {
-    state
-  }
-}
 
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
@@ -22,9 +11,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const App = connect(
-  mapStateToProps,
+const SearchableSearchBar = connect(
+  null,
   mapDispatchToProps
 )(SearchBar);
 
-export default App;
+export default SearchableSearchBar;

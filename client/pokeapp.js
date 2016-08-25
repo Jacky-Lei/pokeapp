@@ -4,14 +4,14 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './containers/App';
+import Main from './components/Main';
 import store from './store';
 
 console.log(store)
 
 render (
   <Provider store={store}>
-    <App />
+    <Main />
   </Provider>,
   document.getElementById('root')
 );

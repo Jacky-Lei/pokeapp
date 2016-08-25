@@ -1,14 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './reducers/rootReducer';
-import thunkMiddleware from 'redux-thunk';
-
-import {pokemon} from './reducers/pokemon';
-
-// const store = createStore(rootReducer, defaultStore, window.devToolsExtension && window.devToolsExtension());
-
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import rootReducer from './reducers/rootReducer'
 
 const store = createStore(
-  pokemon,
+  rootReducer,
   window.devToolsExtension && window.devToolsExtension(),
   applyMiddleware(thunkMiddleware)
 );

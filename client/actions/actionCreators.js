@@ -3,30 +3,61 @@
 
 export const fetchPokemon = function (pokemonName) {
   return function (dispatch) {
-    console.log(dispatch)
     dispatch(requestPokemon(pokemonName))
     const requestURL = `http://pokeapi.co/api/v2/pokemon/${pokemonName}/`
     return $.ajax({
       url: requestURL,
     }).done(function (data) {
-      console.log(data)
       dispatch(receivePokemon(data))
-      dispatch(fetchPokemonTypeInfo(data.types[0].type.url))
+      // dispatch(fetchPokemonTypeInfo(data.types[0].type.url))
+      return dispatch(fetchPokemonDescription(pokemonName))
     })
+    // .done(function (res) {
+    //   console.log(res)
+    //   dispatch(receivePokemonDescription(res))
+    //   // dispatch(fetchPokemonTypeInfo(data.types[0].type.url))
+    // })
   }
 }
 
-export const requestPokemon = function (pokemonName) {
+const requestPokemon = function (pokemonName) {
   return {
     name: pokemonName,
     type: 'REQUEST_POKEMON'
   }
 }
-
-export const receivePokemon = function (data) {
+const receivePokemon = function (data) {
   return {
     data: data,
     type: 'RECEIVE_POKEMON'
+  }
+}
+
+
+export const fetchPokemonDescription = function (pokemonName) {
+  return function (dispatch) {
+    dispatch(requestPokemonDescription(pokemonName))
+    const requestURL = `http://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`
+    return $.ajax({
+      url: requestURL,
+    }).done(function (data) {
+      console.log(data)
+      dispatch(receivePokemonDescription(data))
+      // dispatch(fetchPokemonTypeInfo(data.types[0].type.url))
+    })
+  }
+}
+
+const requestPokemonDescription = function (pokemonName) {
+  return {
+    name: pokemonName,
+    type: 'REQUEST_POKEMON_DESCRIPTION'
+  }
+}
+const receivePokemonDescription = function (data) {
+  return {
+    data: data,
+    type: 'RECEIVE_POKEMON_DESCRIPTION'
   }
 }
 
@@ -46,19 +77,19 @@ export const fetchPokemonTypeInfo = function (url) {
   }
 }
 
-export const requestPokemonTypeInfo = function (url) {
+const requestPokemonTypeInfo = function (url) {
   return {
     url,
     type: 'REQUEST_POKEMON_TYPE_INFO'
   }
 }
-
-export const receivePokemonTypeInfo = function (data) {
+const receivePokemonTypeInfo = function (data) {
   return {
     data: data,
     type: 'RECEIVE_POKEMON_TYPE_INFO'
   }
 }
+
 
 // $r.store.getState().pokemons.name
 // $r.store.getState().pokemons.height

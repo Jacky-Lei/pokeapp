@@ -1,5 +1,5 @@
-// actionCreators.js
 // don't have to import state or action?
+import store from '../store'
 
 export const fetchPokemon = function (pokemonName) {
   return function (dispatch) {
@@ -8,15 +8,19 @@ export const fetchPokemon = function (pokemonName) {
     return $.ajax({
       url: requestURL,
     }).done(function (data) {
+      // typechange will be used to determined if new pokemon should be fetched for weakness and strengths
+      const pokemonTypeChangeNeeded = (data.types[0].type.name !== store.getState().pokemon.type)
+      dispatch(changePokemonType(pokemonTypeChangeNeeded))
       dispatch(receivePokemon(data))
-      // dispatch(fetchPokemonTypeInfo(data.types[0].type.url))
-      return dispatch(fetchPokemonDescription(pokemonName))
+      dispatch(fetchPokemonDescription(pokemonName))
     })
-    // .done(function (res) {
-    //   console.log(res)
-    //   dispatch(receivePokemonDescription(res))
-    //   // dispatch(fetchPokemonTypeInfo(data.types[0].type.url))
-    // })
+  }
+}
+
+const changePokemonType = function (pokemonTypeChangeNeeded) {
+  return {
+    type: 'CHANGE_POKEMON_TYPE',
+    pokemonTypeChangeNeeded: pokemonTypeChangeNeeded
   }
 }
 
@@ -33,7 +37,6 @@ const receivePokemon = function (data) {
   }
 }
 
-
 export const fetchPokemonDescription = function (pokemonName) {
   return function (dispatch) {
     dispatch(requestPokemonDescription(pokemonName))
@@ -41,9 +44,10 @@ export const fetchPokemonDescription = function (pokemonName) {
     return $.ajax({
       url: requestURL,
     }).done(function (data) {
-      console.log(data)
       dispatch(receivePokemonDescription(data))
-      // dispatch(fetchPokemonTypeInfo(data.types[0].type.url))
+      if (store.getState().pokemonTypeInfo.fetchNeeded) {
+        dispatch(fetchPokemonTypeInfo(store.getState().pokemon.type))
+      }
     })
   }
 }
@@ -61,18 +65,53 @@ const receivePokemonDescription = function (data) {
   }
 }
 
-export const fetchPokemonTypeInfo = function (url) {
-  console.log("in fetchPokemonTypeInfo")
-  console.log(url)
-
+export const fetchPokemonTypeInfo = function (pokemonType, mainTypeSearch=true) {
+  const requestURL = `http://pokeapi.co/api/v2/type/${pokemonType}/`
   return function (dispatch) {
-    console.log(dispatch)
-    dispatch(requestPokemonTypeInfo(url))
+    if (mainTypeSearch) {
+      dispatch(requestPokemonTypeInfo())
+    } else {
+      dispatch(requestSidePokemonTypeInfo())
+    }
     return $.ajax({
-      url: url,
+      url: requestURL,
     }).done(function (data) {
-      console.log(data)
-      dispatch(receivePokemonTypeInfo(data))
+      if (mainTypeSearch) {
+        var formattedData = {
+          weakAgainst: data.damage_relations.double_damage_from,
+          strongAgainst: data.damage_relations.double_damage_to
+        }
+        dispatch(receivePokemonTypeInfo(formattedData))
+      } else {
+        var formattedData = {
+          weakAgainst: data.damage_relations.double_damage_from,
+          strongAgainst: data.damage_relations.double_damage_to
+        }
+        var pokemonArr = data.pokemon
+        var result = []
+        var regexPat = /\/\d+\//
+
+        console.log(pokemonArr)
+        for (var x = 0; x < pokemonArr.length; x++) {
+          console.log(pokemonArr[x])
+          console.log(pokemonArr[x].pokemon)
+          var pokemonNumber = pokemonArr[x].pokemon.url.match(regexPat)[0].slice(1,2)
+
+          debugger;
+          console.log(pokemonNumber <= 151)
+          console.log(parseInt(pokemonNumber) <= 151)
+          if (pokemonNumber <= 151 && result.length < 3) {
+            console.log(pokemonArr[x])
+            result.push(pokemonArr[x])
+            x+=2
+          } else {
+            break
+          }
+        }
+        console.log(result)
+        formattedData.pokemon = result
+        dispatch(receiveSidePokemonTypeInfo(formattedData))
+      }
     })
   }
 }
@@ -90,7 +129,18 @@ const receivePokemonTypeInfo = function (data) {
   }
 }
 
-
+const requestSidePokemonTypeInfo = function (url) {
+  return {
+    url,
+    type: 'REQUEST_SIDE_POKEMON_TYPE_INFO'
+  }
+}
+const receiveSidePokemonTypeInfo = function (data) {
+  return {
+    data: data,
+    type: 'RECEIVE_SIDE_POKEMON_TYPE_INFO'
+  }
+}
 // $r.store.getState().pokemons.name
 // $r.store.getState().pokemons.height
 // $r.store.getState().pokemons.weight

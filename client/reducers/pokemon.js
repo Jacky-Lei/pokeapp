@@ -3,6 +3,7 @@ const pokemon = function (state = { isFetching: false }, action) {
       case 'REQUEST_POKEMON':
         return Object.assign({}, state, {isFetching: true})
       case 'RECEIVE_POKEMON':
+      // clean this up and do logic in reducer?
         return Object.assign({}, state, {
           weight: action.data.weight,
           height: action.data.height,

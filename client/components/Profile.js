@@ -13,7 +13,6 @@ const Profile = React.createClass({
       var weight = ""
       var height = ""
       var type = ""
-      var tester = {number: 1, weight:2, height:3, type:4}
       if (this.props.pokemon.number) {
          var {number, weight, height, type} = this.props.pokemon
       }
@@ -27,8 +26,8 @@ const Profile = React.createClass({
       return (
         <div>
           <p>number: {number}</p>
-          <p>average weight: {weight} lbs</p>
-          <p>average height: {height} ft</p>
+          <p>average weight: {weight/10} kg</p>
+          <p>average height: {height/10} m</p>
           <p>type: {type}</p>
           <p>description: {description}</p>
 

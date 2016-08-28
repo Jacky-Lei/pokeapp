@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import SearchBar from '../components/SearchBar';
-import {fetchPokemon} from '../actions/actionCreators';
+import { fetchPokemonIfNeeded } from '../actions/actionCreators';
 
 const mapDispatchToProps = (dispatch) => {
-  console.log(dispatch)
   return {
     submitSearch: (pokemonName) => {
-      dispatch(fetchPokemon(pokemonName));
+      console.log(fetchPokemonIfNeeded)
+      dispatch(fetchPokemonIfNeeded(pokemonName));
     }
   }
 }

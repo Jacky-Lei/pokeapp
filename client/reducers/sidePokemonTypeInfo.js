@@ -1,7 +1,7 @@
 const sidePokemonTypeInfo = function (
   // need default state to be filled out not only for clarity but also so initial render has something to go by
   // if they're depending on the state as props
-  state = { fetchNeeded: true, isFetching: false, weakAgainst: [], strongAgainst: [] },
+  state = { fetchNeeded: true, isFetching: false, weakAgainst: [], strongAgainst: [], name: '' },
   action) {
     switch (action.type) {
       case 'REQUEST_SIDE_POKEMON_TYPE_INFO':
@@ -9,6 +9,7 @@ const sidePokemonTypeInfo = function (
       case 'RECEIVE_SIDE_POKEMON_TYPE_INFO':
         return Object.assign({}, state, {
           // you  only care about the pokemon in there right now
+          name: action.data.name,
           pokemon: action.data.pokemon,
           weakAgainst: action.data.weakAgainst,
           strongAgainst: action.data.strongAgainst

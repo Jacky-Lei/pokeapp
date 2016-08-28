@@ -1,5 +1,5 @@
 const pokemonTypeInfo = function (
-  state = { fetchNeeded: true, isFetching: false, weakAgainst: [], strongAgainst: [] },
+  state = { fetchNeeded: true, isFetching: false, weakAgainst: [], strongAgainst: [], name:'' },
   action) {
     switch (action.type) {
       case 'REQUEST_POKEMON_TYPE_INFO':

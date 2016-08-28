@@ -7,6 +7,7 @@ const SearchBar = React.createClass({
     handleSubmit (event) {
       event.preventDefault()
       const formattedSearchString = this.refs.searchString.value.replace(/[^a-z]/g, "").toLowerCase()
+      this.refs.searchString.value = ''
       this.props.submitSearch(formattedSearchString)
     },
     render() {

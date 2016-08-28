@@ -1,30 +1,24 @@
 import React, { Component } from 'react'
 import MiniPokemon from './MiniPokemon'
-// const Type = React.createClass({
-//   handleClick (e) {
-//     e.preventDefault()
-//     this.props.onTypeClick(this.props.name)
-//   },
-//   render() {
-//     return (
-//       <li onClick={handleClick}>
-//         {this.props.name}
-//       </li>
-//     )
-//   }
-// })
 
-const Type = ({onClick, name, onMiniPokemonClick, miniPokemon}) => (
-  <li
+const Type = ({onClick, name, onMiniPokemonClick, miniPokemon=[]}) => {
+  var miniPokemonArr = []
+  if (miniPokemon) {
+    miniPokemonArr = miniPokemon.map(function (pokemonObj, idx) {
+      return (<MiniPokemon key={idx} name={pokemonObj.pokemon.name} onClick={() => onMiniPokemonClick(pokemonObj.pokemon.name)} />)
+    })
+  }
+  return (
+    <li
     onClick={onClick}
-  >
+    >
     {name}
     <ul>
-      {miniPokemonArr.map(function (pokemon, idx) {
-        return (<MiniPokemon onClick={onMiniPokemonClick} name={pokemon.name}/>)
-      })}
+    {miniPokemonArr}
     </ul>
-  </li>
-)
+    </li>
+  )
+}
+
 
 export default Type

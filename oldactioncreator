@@ -3,7 +3,7 @@ import store from '../store'
 
 export const fetchPokemon = function (pokemonName) {
   return function (dispatch) {
-    dispatch({type: 'REQUESTING'})
+    dispatch(requestPokemon(pokemonName))
     const requestURL = `http://pokeapi.co/api/v2/pokemon/${pokemonName}/`
     return $.ajax({
       url: requestURL,
@@ -19,7 +19,7 @@ export const fetchPokemon = function (pokemonName) {
 
 export const fetchPokemonIfNeeded = function (pokemonName) {
   return function (dispatch) {
-    if (!store.getState().fetching.isFetching) {
+    if (!store.getState().pokemon.isFetching) {
       dispatch(fetchPokemon(pokemonName))
     }
   }
@@ -32,6 +32,12 @@ const changePokemonType = function (pokemonTypeChangeNeeded) {
   }
 }
 
+const requestPokemon = function (pokemonName) {
+  return {
+    name: pokemonName,
+    type: 'REQUEST_POKEMON'
+  }
+}
 const receivePokemon = function (data) {
   return {
     data: data,
@@ -41,25 +47,39 @@ const receivePokemon = function (data) {
 
 export const fetchPokemonDescription = function (pokemonName) {
   return function (dispatch) {
+    dispatch(requestPokemonDescription(pokemonName))
     const requestURL = `http://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`
     return $.ajax({
       url: requestURL,
     }).done(function (data) {
       dispatch(receivePokemonDescription(data))
-      if (store.getState().fetching.fetchNeeded) {
+      if (store.getState().pokemonTypeInfo.fetchNeeded) {
         dispatch(fetchPokemonTypeInfo(store.getState().pokemon.type))
       }
     })
   }
 }
 
+const requestPokemonDescription = function (pokemonName) {
+  return {
+    name: pokemonName,
+    type: 'REQUEST_POKEMON_DESCRIPTION'
+  }
+}
+const receivePokemonDescription = function (data) {
+  return {
+    data: data,
+    type: 'RECEIVE_POKEMON_DESCRIPTION'
+  }
+}
+
 export const fetchPokemonTypeInfo = function (pokemonType, mainTypeSearch=true) {
   const requestURL = `http://pokeapi.co/api/v2/type/${pokemonType}/`
   return function (dispatch) {
-    if (!mainTypeSearch) {
-      console.log('not main')
-      // don't need dispatch for mainSearch because it's part of chain of pokemonSearch
-      dispatch({type: 'REQUESTING'})
+    if (mainTypeSearch) {
+      dispatch(requestPokemonTypeInfo())
+    } else {
+      dispatch(requestSidePokemonTypeInfo())
     }
     return $.ajax({
       url: requestURL,
@@ -79,6 +99,7 @@ export const fetchPokemonTypeInfo = function (pokemonType, mainTypeSearch=true) 
         var pokemonArr = data.pokemon
         var result = []
         var regexPat = /\/\d+\//
+
         for (var x = 0; x < pokemonArr.length; x++) {
           var pokemonNumber = pokemonArr[x].pokemon.url.match(regexPat)[0].slice(1,-1)
           if (pokemonNumber <= 151 && result.length < 3) {
@@ -95,13 +116,12 @@ export const fetchPokemonTypeInfo = function (pokemonType, mainTypeSearch=true) 
   }
 }
 
-const receivePokemonDescription = function (data) {
+const requestPokemonTypeInfo = function (url) {
   return {
-    data: data,
-    type: 'RECEIVE_POKEMON_DESCRIPTION'
+    url,
+    type: 'REQUEST_POKEMON_TYPE_INFO'
   }
 }
-
 const receivePokemonTypeInfo = function (data) {
   return {
     data: data,
@@ -109,6 +129,12 @@ const receivePokemonTypeInfo = function (data) {
   }
 }
 
+const requestSidePokemonTypeInfo = function (url) {
+  return {
+    url,
+    type: 'REQUEST_SIDE_POKEMON_TYPE_INFO'
+  }
+}
 const receiveSidePokemonTypeInfo = function (data) {
   return {
     data: data,

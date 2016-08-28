@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import Profile from '../components/Profile'
 
 const mapStateToProps = (state) => {
-  console.log(state.pokemon)
   return {
     pokemon: state.pokemon
     // pokemonTypeInfo: state.pokemonTypeInfo

@@ -5,6 +5,7 @@ const pokemon = function (state = { isFetching: false }, action) {
       case 'RECEIVE_POKEMON':
       // clean this up and do logic in reducer?
         return Object.assign({}, state, {
+          name: action.data.name,
           weight: action.data.weight,
           height: action.data.height,
           number: action.data.id,

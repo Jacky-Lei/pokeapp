@@ -7,14 +7,17 @@ const Profile = React.createClass({
     // componentWillUpdate () {
     //
     // },
+
     render() {
+      console.log(this.props)
+      console.log(this.props.pokemon)
       var number = ""
       var weight = ""
       var height = ""
-      var type = ""
+      var pokeType = ""
       var name = ""
       if (this.props.pokemon.number) {
-         var {number, weight, height, type, name} = this.props.pokemon
+         var {number, weight, height, pokeType, name} = this.props.pokemon
       }
 
       var description = ""
@@ -29,13 +32,13 @@ const Profile = React.createClass({
           <p>number: {number}</p>
           <p>average weight: {weight/10} kg</p>
           <p>average height: {height/10} m</p>
-          <p>type: {type}</p>
+          <p>type: {pokeType}</p>
           <p>description: {description}</p>
 
           {/* {this.props.selectedPokemon.name}
           {this.props.selectedPokemon.height}
           {this.props.selectedPokemon.weight} */}
-          {/* {this.props.pokemonTypeInfo.damage_relations.double_damage_from[0].name} */}
+          {/* {this.props.pokeType.damage_relations.double_damage_from[0].name} */}
         </div>
       )
     }

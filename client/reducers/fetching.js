@@ -1,20 +1,23 @@
-// responsible for preventing double fetching from multiple clicks and unncesary
-// fetching of a pokemonType that is also in state
+// Prevents multiple fetches from multiple clicks
 
-const fetching = function (state = { isFetching: false, fetchNeeded: true }, action) {
-    switch (action.type) {
-      case 'REQUESTING':
-        return Object.assign({}, state, {isFetching: true})
-      case 'RECEIVE_POKEMON_TYPE_INFO':
-      case 'RECEIVE_SIDE_POKEMON_TYPE_INFO':
-        return Object.assign({}, state, {isFetching: false})
-      case 'CHANGE_POKEMON_TYPE':
-        return Object.assign({}, state, {
-          fetchNeeded: action.pokemonTypeChangeNeeded
-        })
-      default:
-        return state
-    }
+const fetching = (state = { isFetching: false }, action) => {
+  switch (action.type) {
+    case 'REQUESTING':
+      return {
+        ...state,
+        isFetching: true
+      }
+    case 'RECEIVE_POKE_TYPE':
+    case 'ADD_ACTIVE_POKE_TYPE':
+      return {
+        ...state,
+        isFetching: false
+      }
+    default:
+      return state
+  }
 }
 
 export default fetching
+
+// can action creator dispatch twice?

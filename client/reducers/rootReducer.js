@@ -1,10 +1,19 @@
-import fetching from './fetching';
-import pokemon from './pokemon';
-import pokemonTypeInfo from './pokemonTypeInfo';
-import sidePokemonTypeInfo from './sidePokemonTypeInfo';
+import activePokemon from './activePokemon'
+import activePokeType from './activePokeType'
+import activeSubPokeType from './activeSubPokeType'
+import fetching from './fetching'
+import pokemonArray from './pokemon'
+import pokeTypeArray from './pokeType'
 
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-const rootReducer = combineReducers({fetching, pokemon, pokemonTypeInfo, sidePokemonTypeInfo});
+const rootReducer = combineReducers({
+  activePokemon,
+  activePokeType,
+  activeSubPokeType,
+  fetching,
+  pokemonArray,
+  pokeTypeArray
+})
 
-export default rootReducer;
+export default rootReducer

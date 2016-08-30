@@ -3,8 +3,8 @@ import Profile from '../components/Profile'
 
 const mapStateToProps = (state) => {
   return {
-    pokemon: state.pokemon
-    // pokemonTypeInfo: state.pokemonTypeInfo
+    pokemon: state.activePokemon
+    // pokeType: state.pokeType
     // can't destructure with just state.selectedPokemon, need to put in key
   }
 }

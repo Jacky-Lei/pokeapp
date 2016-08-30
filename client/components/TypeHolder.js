@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import TypeList from './TypeList'
 
-const TypeHolder = ({pokemonTypeInfo, onTypeClick}) => (
+const TypeHolder = ({pokeType, onTypeClick}) => (
   <div>
-    weakAgainst: <TypeList info={pokemonTypeInfo.weakAgainst} onClick={onTypeClick} />
-    strongAgainst: <TypeList info={pokemonTypeInfo.strongAgainst} onClick={onTypeClick} />
+    weakAgainst: <TypeList info={pokeType.weakAgainst} onClick={onTypeClick} />
+    strongAgainst: <TypeList info={pokeType.strongAgainst} onClick={onTypeClick} />
   </div>
 )
 

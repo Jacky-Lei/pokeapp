@@ -1,25 +1,43 @@
-const pokemon = function (state = { isFetching: false }, action) {
+const initialState = {
+  name: '',
+  weight: '',
+  height: '',
+  number: '',
+  pokeType: ''
+}
+
+const pokemon = (state = initialState, action) => {
+  switch (action.type) {
+    case 'RECEIVE_POKEMON':
+      return {
+        ...state,
+        ...action.data
+      }
+    case 'RECEIVE_POKEMON_DESCRIPTION':
+      if (state.name !== action.data.name){
+        return state
+      }
+      return {
+        ...state,
+        ...action.data
+      }
+  }
+}
+
+const pokemonArray = (state = [], action) => {
     switch (action.type) {
-      case 'REQUEST_POKEMON':
-        return Object.assign({}, state, {isFetching: true})
       case 'RECEIVE_POKEMON':
-      // clean this up and do logic in reducer?
-        return Object.assign({}, state, {
-          name: action.data.name,
-          weight: action.data.weight,
-          height: action.data.height,
-          number: action.data.id,
-          type: action.data.types[0].type.name
-        })
-      case 'REQUEST_POKEMON_DESCRIPTION':
-        return Object.assign({}, state, {isFetching: true})
+        return [
+          ...state,
+          pokemon(undefined, action)
+        ]
       case 'RECEIVE_POKEMON_DESCRIPTION':
-        return Object.assign({}, state, {
-          description: action.data.flavor_text_entries.find(function (obj) {return obj.language.name === "en"}).flavor_text
+        return state.map(function (p) {
+          return pokemon(p, action)
         })
       default:
         return state
     }
 }
 
-export default pokemon
+export default pokemonArray

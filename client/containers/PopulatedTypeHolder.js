@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
 import TypeHolder from '../components/TypeHolder'
-import { fetchPokemonTypeInfo } from '../actions/actionCreators'
+import { checkPokeTypeFetch } from '../actions/actionCreators'
 
 const mapStateToProps = (state) => {
   // can't use shortcut of () to return object because ({...}) will cause error for es6
   // thus you need to explicity use {return {...}}
   return {
-    pokemonTypeInfo: state.pokemonTypeInfo
+    pokeType: state.activePokeType
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onTypeClick: function (typeName) {
-      dispatch(fetchPokemonTypeInfo(typeName, false))
+      dispatch(checkPokeTypeFetch(typeName, true))
     }
   }
 }

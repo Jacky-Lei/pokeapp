@@ -15,6 +15,14 @@ const activeSubPokeType = (state = initialState, action) => {
       ...state,
       ...action.data
     }
+    case 'CLEAR_SUB_POKE_TYPE':
+    return {
+      ...state,
+      name: '',
+      pokemon: [],
+      weakAgainst: [],
+      strongAgainst: []
+    }
     default:
       return state
   }

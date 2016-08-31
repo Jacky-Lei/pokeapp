@@ -28,7 +28,7 @@ const Profile = React.createClass({
 
       return (
         <div>
-          <p>name: {name}</p>
+          <p className='awesome'>name: {name}</p>
           <p>number: {number}</p>
           <p>average weight: {weight/10} kg</p>
           <p>average height: {height/10} m</p>

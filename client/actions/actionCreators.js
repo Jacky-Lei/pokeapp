@@ -4,12 +4,6 @@ import { formatPokemonData, formatDescription, formatPokeType } from '../helpers
 import _ from 'lodash/core'
 // import {Pokedex} from 'pokedex-promise-v2'
 import fetch from 'isomorphic-fetch'
-// import polyfill from 'es6-promise'
-// require('es6-promise').polyfill();
-// require('isomorphic-fetch');
-
-// var P = new Pokedex();
-
 
 export const checkPokemonFetch = function (pokemonName) {
   return function (dispatch) {
@@ -40,33 +34,12 @@ export const addActivePokemon = function (pokemon) {
     data: pokemon
   }
 }
-// return $.ajax({
-//   url: requestURL,
-// }).done(function (data) {
-//   dispatch(receivePokemon(formatPokemonData(data)))
-//   dispatch(fetchPokemonDescription(pokemonName))
-// })
-
-// export const fetchPokemon = function (pokemonName) {
-//   return function (dispatch) {
-//     dispatch({type: 'REQUESTING'})
-//     const requestURL = `http://pokeapi.co/api/v2/pokemon/${pokemonName}/`
-//     return fetch(requestURL)
-//     .then(function (response) {
-//       return response.json()
-//     })
-//     .then(function (data) {
-//       dispatch(receivePokemon(formatPokemonData(data)))
-//       dispatch(fetchPokemonDescription(pokemonName))
-//     })
-//   }
-// }
 
 export const fetchPokemon = function (pokemonName) {
   return function (dispatch) {
     dispatch({type: 'REQUESTING'})
     const requestURL = `http://pokeapi.co/api/v2/pokemon/${pokemonName}/`
-    dispatch([fetch(requestURL), 'fetchPokemon'])
+    dispatch({url: requestURL, fetchName: 'fetchPokemon', promise: true})
   }
 }
 
@@ -80,23 +53,9 @@ export const receivePokemon = function (data) {
 export const fetchPokemonDescription = function (pokemonName) {
   return function (dispatch) {
     const requestURL = `http://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`
-    dispatch([fetch(requestURL), 'fetchPokemonDescription'])
+    dispatch({url: requestURL, fetchName: 'fetchPokemonDescription', promise: true})
   }
 }
-
-//     return $.ajax({
-//       url: requestURL,
-//     }).done(function (data) {
-//       dispatch(receivePokemonDescription(formatDescription(data)))
-//       // would it always be the last one?
-//       dispatch(addActivePokemon(store.getState().pokemonArray.filter(function (p) {
-//         return p.name === pokemonName
-//       })[0]))
-//       // check if typearray has active pokemon type
-//       dispatch(checkPokeTypeCache(store.getState().activePokemon.pokeType))
-//     })
-//   }
-// }
 
 export const receivePokemonDescription = function (data) {
   return {
@@ -108,7 +67,6 @@ export const receivePokemonDescription = function (data) {
 export const checkPokeTypeFetch = function (pokeType, subTypeFetch = false) {
   return function (dispatch) {
     if (store.getState().fetching.isFetching) {return}
-    console.log(subTypeFetch)
     dispatch(checkPokeTypeCache(pokeType, subTypeFetch))
   }
 }
@@ -134,22 +92,9 @@ export const fetchPokeType = function (pokemonType, subTypeFetch) {
   return function (dispatch) {
     dispatch({type: 'REQUESTING'})
     const typeFetch = subTypeFetch ? "subTypeFetch" : "mainTypeFetch"
-    dispatch([fetch(requestURL), typeFetch])
+    dispatch({url: requestURL, fetchName: typeFetch, promise: true})
   }
 }
-
-//     return $.ajax({
-//       url: requestURL
-//     }).done(function (data) {
-//       dispatch(receivePokeType(formatPokeType(data)))
-//       if (!subTypeFetch) {
-//         dispatch(addActivePokeType(formatPokeType(data)))
-//       } else {
-//         dispatch(addActiveSubPokeType(formatPokeType(data)))
-//       }
-//     })
-//   }
-// }
 
 export const addActivePokeType = function (pokeType) {
   return {
@@ -162,6 +107,12 @@ export const addActiveSubPokeType = function (pokeType) {
   return {
     type: 'ADD_ACTIVE_SUB_POKE_TYPE',
     data: pokeType
+  }
+}
+
+export const clearSubPokeType = function () {
+  return {
+    type: 'CLEAR_SUB_POKE_TYPE',
   }
 }
 

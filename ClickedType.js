@@ -4,9 +4,9 @@ import { checkPokemonFetch } from '../actions/actionCreators'
 
 // can the state be a certain slice of state? or does it always have to be the whole store?
 
-const mapStateToProps = function (state, ownProps) {
-  return {miniPokemon: state.activeSubPokeType.name === ownProps.name ? state.activeSubPokeType.pokemon: null}
-}
+// const mapStateToProps = function (state, ownProps) {
+//   return {miniPokemon: state.activeSubPokeType.name === ownProps.name ? state.activeSubPokeType.pokemon: null}
+// }
 const mapDispatchToProps = function (dispatch) {
   return {
     onMiniPokemonClick: function (pokemonName) {
@@ -16,7 +16,7 @@ const mapDispatchToProps = function (dispatch) {
 }
 
 const ClickedType = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Type)
 

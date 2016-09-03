@@ -18,18 +18,30 @@ module.exports = {
   ],
   module: {
     loaders: [
-    // js
-    {
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'client')
-    }
-    // CSS
-    // {
-    //   test: /\.styl$/,
-    //   include: path.join(__dirname, 'client'),
-    //   loader: 'style-loader!css-loader!stylus-loader'
-    // }
+      // js
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'client')
+      },
+      // CSS
+      {
+        test: /\.css$/,
+        include: path.join(__dirname, 'client'),
+        loader: 'style-loader!css-loader'
+
+      },
+      { test: /\.(woff|woff2|eot|ttf|svg)$/,
+        loader: 'url'
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        include: path.join(__dirname, 'client'),
+        loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      }
     ]
   }
 };

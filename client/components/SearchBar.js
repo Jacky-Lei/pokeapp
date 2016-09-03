@@ -12,10 +12,10 @@ const SearchBar = React.createClass({
     },
     render() {
       return (
-        <form onSubmit={this.handleSubmit} id="tester">
+        <form className="form form-group has-info col-md-4" onSubmit={this.handleSubmit} id="tester">
         {/* <p onClick={this.props.onClicky}>test</p> */}
-        <input type="text" ref="searchString"/>
-        <input type="submit"/>
+          <input type="text" ref="searchString" className="search-input form-control" placeholder=" . . . enter pokemon name" />
+          <button type="submit" className="btn btn-info btn-raised " name="button">Search!</button>
         </form>
       )
     }

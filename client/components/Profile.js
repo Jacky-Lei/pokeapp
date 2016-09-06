@@ -27,23 +27,23 @@ const Profile = React.createClass({
       }
 
       return (
-        <article className="screen clear">
+        <div>
           <section className="clear row">
-            <div className="col-xs-12 col-lg-5 profile-image-holder">
-              <img src="http://veekun.com/dex/media/pokemon/global-link/143.png" alt="" />
-            </div>
-            <div className="attributes col-xs-12 col-lg-7">
-              <p className="profile-num">#{number}</p>
-              <p className="profile-name">{name}</p>
-              <p className="profile-type type type-normal">Normal</p>
-              <p className="weight">Weight: {weight/10} kg</p>
-              <p>Height: {height/10} m</p>
-            </div>
+          <div className="col-xs-12 col-lg-5 profile-image-holder">
+          <img src="http://veekun.com/dex/media/pokemon/global-link/143.png" alt="" />
+          </div>
+          <div className="attributes col-xs-12 col-lg-7">
+          <p className="profile-num">#{number}</p>
+          <p className="profile-name">{name}</p>
+          <p className="profile-type type type-normal">Normal</p>
+          <p className="weight">Weight: {weight/10} kg</p>
+          <p>Height: {height/10} m</p>
+          </div>
           </section>
           <section>
-            <p className="clear description">{description}</p>
+          <p className="clear description">{description}</p>
           </section>
-        </article>
+        </div>
       )
     }
 })

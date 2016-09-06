@@ -23,12 +23,11 @@ const Main = () => (
         <Title />
         <SearchableSearchBar />
       </div>
-
-      <PopulatedProfile />      
-
-
-      <PopulatedTypeHolder />
-      <ClickedPokeList />
+      <article className="screen clear">
+        <PopulatedProfile />      
+        <PopulatedTypeHolder />
+        <ClickedPokeList />
+      </article>
     </div>
 )
 

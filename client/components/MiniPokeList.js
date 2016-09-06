@@ -9,9 +9,11 @@ const Type = ({onMiniPokemonClick, miniPokemon=[]}) => {
     })
   }
   return (
-    <ul>
-    {miniPokemonArr}
-    </ul>
+    <section className="col-xs-12">
+      <ul className="row">
+      {miniPokemonArr}
+      </ul>
+    </section>
   )
 }
 

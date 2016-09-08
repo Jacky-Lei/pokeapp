@@ -23,8 +23,8 @@ const Main = () => (
         <Title />
         <SearchableSearchBar />
       </div>
-      <article className="screen clear">
-        <PopulatedProfile />      
+      <article className="screen clearfix">
+        <PopulatedProfile />
         <PopulatedTypeHolder />
         <ClickedPokeList />
       </article>

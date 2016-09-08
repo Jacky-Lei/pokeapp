@@ -5,7 +5,8 @@ const Type = ({onMiniPokemonClick, miniPokemon=[]}) => {
   var miniPokemonArr = []
   if (miniPokemon) {
     miniPokemonArr = miniPokemon.map(function (pokemonObj, idx) {
-      return (<MiniPokemon key={idx} name={pokemonObj.pokemon.name} onClick={() => onMiniPokemonClick(pokemonObj.pokemon.name)} />)
+      console.log(pokemonObj)
+      return (<MiniPokemon key={idx} name={pokemonObj.pokemon.name} pokemonNumber={pokemonObj.pokemon.id} onClick={() => onMiniPokemonClick(pokemonObj.pokemon.name)} />)
     })
   }
   return (

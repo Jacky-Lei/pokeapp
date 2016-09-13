@@ -11,8 +11,10 @@ export const promiseErrorMiddleware = store => next => action => {
   const fetchName = action.fetchName
   return Promise.resolve(fetch(url)).then(function (response) {
     if (response.status === 404) {
-      throw new Error("Please make sure you spelled the Pokemon correctly")
+      store.dispatch({type: 'SPELLING_ERROR'})
+      throw new Error("Please ensure Pokemon name is spelled correctly")
     } else if (response.status >= 400) {
+      store.dispatch({type: 'SERVER_ERROR'})
       throw new Error("Server Error")
     }
     return response.json()

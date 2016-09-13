@@ -20,7 +20,7 @@ const Profile = React.createClass({
       var name = ""
 
 
-      if ( (this.props.fetching) || (!this.props.pokemon.number) ) {
+      if ( (this.props.fetching.isFetching) || (!this.props.pokemon.number) || (this.props.fetching.error)) {
         return <div></div>
       } else {
         var imageSRC = `http://veekun.com/dex/media/pokemon/global-link/${this.props.pokemon.number}.png`
@@ -30,6 +30,7 @@ const Profile = React.createClass({
       var description = ""
       var nor = "type-normal"
 
+var classType = `type-${pokeType}`
 
       if (this.props.pokemon.description) {
          var {description} = this.props.pokemon
@@ -44,10 +45,10 @@ const Profile = React.createClass({
 
           </div>
           <div className="attributes col-xs-12 col-lg-7">
-          <p className="profile-num">#{number}</p>
-          <p className="profile-name capitalize">{name}</p>
-          <p className="profile-type type type-normal">{pokeType}</p>
-          <p className="weight">Weight: {weight/10} kg</p>
+          <p className="profile-num top-bottom-margin ">#{number}</p>
+          <p className="profile-name capitalize top-bottom-margin ">{name}</p>
+          <p className={`profile-type type top-bottom-margin ${classType}`}>{pokeType}</p>
+          <p className="weight top-bottom-margin ">Weight: {weight/10} kg</p>
           <p>Height: {height/10} m</p>
           </div>
           </section>

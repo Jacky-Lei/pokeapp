@@ -93,6 +93,17 @@ table {
 	text-align: center;
 }
 
+.top-bottom-margin {
+	margin: 10px 0;
+}
+
+.error-msg {
+	position: relative;
+	top: 200px;
+	line-height: 1.5;
+	color: #8B1820;
+}
+
 /*LOADING*/
 .loading {
 	height: 200px;
@@ -208,12 +219,12 @@ table {
 
 .profile-num {
 	font-size: 50px;
-	margin: 0;
+	/*margin: 0;*/
 }
 
 .profile-name {
 	font-size: 50px;
-	margin: 0;
+	/*margin: 0;*/
 }
 
 .type {
@@ -234,6 +245,7 @@ table {
 	padding: 15px;
 	border-radius: 15px;
 	margin: 15px 0 60px 0;
+	line-height: 1.5;
 }
 
 /*WEAKNESSES AND STRENGTHS*/
@@ -277,6 +289,7 @@ table {
 .mini-pokemon {
   text-align: center;
 	border: 5px solid #FFFFFF;
+	cursor: pointer;
 }
 
 .mini-pokemon:hover {
@@ -301,6 +314,9 @@ table {
 		position: relative;
 		left: 47px;
 	}
+	.attributes {
+		text-align: left;
+	}
 	.profile-name {
 		font-size: 40px;
 	}
@@ -310,6 +326,13 @@ table {
 }
 
 @media (max-width: 992px) {
+	.attributes {
+		text-align: center;
+	}
+	.profile-type {
+		width: 50%;
+		margin: 0 auto;
+	}
 	.str-weak-header {
 		font-size: 16px;
 	}
@@ -512,7 +535,7 @@ table {
 
 .type-bug-active {
     background-color: #A8B820;
-    border: 5px solid #D8E030;
+    border: 5px dotted #D8E030;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -520,7 +543,7 @@ table {
 
 .type-dragon-active {
     background-color: #7038F8;
-    border: 5px solid #B8A0F8;
+    border: 5px dotted #B8A0F8;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -528,7 +551,7 @@ table {
 
 .type-ice-active {
     background-color: #98D8D8;
-    border: 5px solid #D0F8E8;
+    border: 5px dotted #D0F8E8;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -536,7 +559,7 @@ table {
 
 .type-fighting-active {
     background-color: #C03028;
-    border: 5px solid #F08030;
+    border: 5px dotted #F08030;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -544,7 +567,7 @@ table {
 
 .type-fire-active {
     background-color: #F08030;
-    border: 5px solid #F8D030;
+    border: 5px dotted #F8D030;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -552,7 +575,7 @@ table {
 
 .type-flying-active {
     background-color: #A890F0;
-    border: 5px solid #C8C0F8;
+    border: 5px dotted #C8C0F8;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -560,7 +583,7 @@ table {
 
 .type-grass-active {
     background-color: #78C850;
-    border: 5px solid #C0F860;
+    border: 5px dotted #C0F860;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -568,7 +591,7 @@ table {
 
 .type-ghost-active {
     background-color: #705898;
-    border: 5px solid #A890F0;
+    border: 5px dotted #A890F0;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -576,7 +599,7 @@ table {
 
 .type-ground-active {
     background-color: #E0C068;
-    border: 5px solid #F8F878;
+    border: 5px dotted #F8F878;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -584,7 +607,7 @@ table {
 
 .type-electric-active {
     background-color: #F8D030;
-    border: 5px solid #F8F878;
+    border: 5px dotted #F8F878;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -592,7 +615,7 @@ table {
 
 .type-normal-active {
     background-color: #A8A878;
-    border: 5px solid #D8D8D0;
+    border: 5px dotted #D8D8D0;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -600,7 +623,7 @@ table {
 
 .type-poison-active {
     background-color: #A040A0;
-    border: 5px solid #D880B8;
+    border: 5px dotted #D880B8;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -608,7 +631,7 @@ table {
 
 .type-psychic-active {
     background-color: #F85888;
-    border: 5px solid #F8C0B0;
+    border: 5px dotted #F8C0B0;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -616,7 +639,7 @@ table {
 
 .type-rock-active {
     background-color: #B8A038;
-    border: 5px solid #E0C068;
+    border: 5px dotted #E0C068;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -624,7 +647,7 @@ table {
 
 .type-water-active {
     background-color: #6890F0;
-    border: 5px solid #98D8D8;
+    border: 5px dotted #98D8D8;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -632,7 +655,7 @@ table {
 
 .type-steel-active {
     background-color: #B8B8D0;
-    border: 5px solid #D8D8C0;
+    border: 5px dotted #D8D8C0;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;
@@ -640,7 +663,7 @@ table {
 
 .type-fairy-active {
     background-color: #F0B6BC;
-    border: 5px solid #F5CAD1;
+    border: 5px dotted #F5CAD1;
 		color: #FF0000;
 		font-weight: bolder;
 		text-transform: uppercase;

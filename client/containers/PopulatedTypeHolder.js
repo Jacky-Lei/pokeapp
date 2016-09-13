@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
   // thus you need to explicity use {return {...}}
   return {
     pokeType: state.activePokeType,
-    fetching: state.fetching.isFetching
+    fetching: state.fetching,
+    activeSubPokeType: state.activeSubPokeType.name
   }
 }
 

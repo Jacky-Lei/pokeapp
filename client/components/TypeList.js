@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Type from './Type'
 // the connect component's onclick name will be more descripitive but presentational doesn't care, it's just a click
 
-const TypeList = ({info, onClick}) => {
+const TypeList = ({info, onClick, activeSubPokeType}) => {
   var arrays=[],tempArray=[]
   info.map(function(element, index){
     tempArray.push(element)
@@ -21,7 +21,7 @@ const TypeList = ({info, onClick}) => {
             console.log(i)
             console.log(idx)
             var keyy = idx + (3*i)
-            return <Type key={idx + (3*i)} name={type.name} onClick={() => onClick(type.name)}/>
+            return <Type key={idx + (3*i)} name={type.name} onClick={() => onClick(type.name)} activeSubPokeType={activeSubPokeType}/>
           })}
         </div>
       })

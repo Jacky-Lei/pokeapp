@@ -1,16 +1,18 @@
 // Prevents multiple fetches from multiple clicks
 
-const fetching = (state = { isFetching: false, isFetchingSub: false }, action) => {
+const fetching = (state = { isFetching: false, isFetchingSub: false, error: '' }, action) => {
   switch (action.type) {
     case 'REQUESTING':
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        error: ''
       }
     case 'REQUESTING_SUB':
       return {
         ...state,
-        isFetchingSub: true
+        isFetchingSub: true,
+        error: ''
       }
     case 'ADD_ACTIVE_POKE_TYPE':
     case 'ADD_ACTIVE_SUB_POKE_TYPE':
@@ -18,6 +20,20 @@ const fetching = (state = { isFetching: false, isFetchingSub: false }, action) =
         ...state,
         isFetching: false,
         isFetchingSub: false
+      }
+    case 'SPELLING_ERROR':
+      return {
+        ...state,
+        isFetching: false,
+        isFetchingSub: false,
+        error: "Please ensure Pokemon name is spelled correctly."
+      }
+    case 'SERVER_ERROR':
+      return {
+        ...state,
+        isFetching: false,
+        isFetchingSub: false,
+        error: "There was a server error, please try again later."
       }
     default:
       return state

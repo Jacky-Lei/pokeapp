@@ -87,12 +87,26 @@ export const checkPokeTypeCache = function (pokeTypeName, subTypeFetch) {
   }
 }
 
+// export const fetchPokeType = function (pokemonType, subTypeFetch) {
+//   const requestURL = `http://pokeapi.co/api/v2/type/${pokemonType}/`
+//   return function (dispatch) {
+//     dispatch({type: 'REQUESTING'})
+//     const typeFetch = subTypeFetch ? "subTypeFetch" : "mainTypeFetch"
+//     dispatch({url: requestURL, fetchName: typeFetch, promise: true})
+//   }
+// }
+
 export const fetchPokeType = function (pokemonType, subTypeFetch) {
   const requestURL = `http://pokeapi.co/api/v2/type/${pokemonType}/`
   return function (dispatch) {
-    dispatch({type: 'REQUESTING'})
-    const typeFetch = subTypeFetch ? "subTypeFetch" : "mainTypeFetch"
-    dispatch({url: requestURL, fetchName: typeFetch, promise: true})
+    if (subTypeFetch) {
+      dispatch({type: 'REQUESTING_SUB'})
+      dispatch({url: requestURL, fetchName: "subTypeFetch", promise: true})
+    } else {
+      dispatch({type: 'REQUESTING'})
+      dispatch({url: requestURL, fetchName: "mainTypeFetch", promise: true})
+
+    }
   }
 }
 

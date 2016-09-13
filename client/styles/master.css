@@ -75,12 +75,34 @@ table {
 
 
 
+
 @font-face {
   font-family: 'gameboy';
   src: url('../fonts/gameboy-webfont.woff2') format('woff2'),
        url('../fonts/gameboy-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+/*HELPER CLASSES*/
+.capitalize {
+	text-transform: capitalize;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+/*LOADING*/
+.loading {
+	height: 200px;
+	position: relative;
+	top: 150px;
+}
+
+.loading-small {
+	height: 200px;
+	margin-bottom: 20px;
 }
 
 /*POKEDEX CONTAINER*/
@@ -175,13 +197,14 @@ table {
 	border-radius: 7px;
 	padding: 20px;
 	font-family: gameboy;
+	min-height: 600px;
 }
 
 /*PROFILE IMAGE AND STATS*/
 
-.profile-image-holder {
+/*.profile-image-holder {
 	text-align: center;
-}
+}*/
 
 .profile-num {
 	font-size: 50px;
@@ -191,7 +214,6 @@ table {
 .profile-name {
 	font-size: 50px;
 	margin: 0;
-	text-transform: capitalize;
 }
 
 .type {

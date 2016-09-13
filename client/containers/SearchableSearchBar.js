@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
 import SearchBar from '../components/SearchBar';
-import { checkPokemonFetch } from '../actions/actionCreators';
+import { checkPokemonFetch, clearSubPokeType } from '../actions/actionCreators'
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
     submitSearch: (pokemonName) => {
       dispatch(checkPokemonFetch(pokemonName));
+      dispatch(clearSubPokeType())
     }
   }
 }

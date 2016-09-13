@@ -1,17 +1,23 @@
 // Prevents multiple fetches from multiple clicks
 
-const fetching = (state = { isFetching: false }, action) => {
+const fetching = (state = { isFetching: false, isFetchingSub: false }, action) => {
   switch (action.type) {
     case 'REQUESTING':
       return {
         ...state,
         isFetching: true
       }
-    case 'RECEIVE_POKE_TYPE':
-    case 'ADD_ACTIVE_POKE_TYPE':
+    case 'REQUESTING_SUB':
       return {
         ...state,
-        isFetching: false
+        isFetchingSub: true
+      }
+    case 'ADD_ACTIVE_POKE_TYPE':
+    case 'ADD_ACTIVE_SUB_POKE_TYPE':
+      return {
+        ...state,
+        isFetching: false,
+        isFetchingSub: false
       }
     default:
       return state
@@ -19,5 +25,25 @@ const fetching = (state = { isFetching: false }, action) => {
 }
 
 export default fetching
+
+// const fetching = (state = { isFetching: false }, action) => {
+//   switch (action.type) {
+//     case 'REQUESTING':
+//       return {
+//         ...state,
+//         isFetching: true
+//       }
+//     case 'RECEIVE_POKE_TYPE':
+//     case 'ADD_ACTIVE_POKE_TYPE':
+//       return {
+//         ...state,
+//         isFetching: false
+//       }
+//     default:
+//       return state
+//   }
+// }
+//
+// export default fetching
 
 // can action creator dispatch twice?

@@ -35,9 +35,8 @@ const removeDarkType = function (arr) {
 
 const selectThreeOriginalPokemon = function (pokemonArray) {
   const filteredPokemonArray = []
-  const regexPat = /\/\d+\//
   for (var x = 0; x < pokemonArray.length; x++) {
-    var pokemonNumber = pokemonArray[x].pokemon.url.match(regexPat)[0].slice(1,-1)
+    var pokemonNumber = extractPokeNum(pokemonArray[x].pokemon.url)
     if (pokemonNumber <= 151 && filteredPokemonArray.length < 3) {
       filteredPokemonArray.push(pokemonArray[x])
       x+=2
@@ -46,4 +45,9 @@ const selectThreeOriginalPokemon = function (pokemonArray) {
     }
   }
   return filteredPokemonArray
+}
+
+export const extractPokeNum = function (url) {
+  const regexPat = /\/\d+\//
+  return url.match(regexPat)[0].slice(1,-1)
 }

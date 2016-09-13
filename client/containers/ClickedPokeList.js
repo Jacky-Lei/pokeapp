@@ -5,7 +5,10 @@ import { checkPokemonFetch, clearSubPokeType } from '../actions/actionCreators'
 // can the state be a certain slice of state? or does it always have to be the whole store?
 
 const mapStateToProps = function (state) {
-  return {miniPokemon: state.activeSubPokeType.pokemon}
+  return {
+    miniPokemon: state.activeSubPokeType.pokemon,
+    fetching: state.fetching.isFetchingSub
+  }
 }
 const mapDispatchToProps = function (dispatch) {
   return {

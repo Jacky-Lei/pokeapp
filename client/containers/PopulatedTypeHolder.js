@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
   // can't use shortcut of () to return object because ({...}) will cause error for es6
   // thus you need to explicity use {return {...}}
   return {
-    pokeType: state.activePokeType
+    pokeType: state.activePokeType,
+    fetching: state.fetching.isFetching
   }
 }
 

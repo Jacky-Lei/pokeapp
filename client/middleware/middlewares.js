@@ -39,10 +39,9 @@ export const dataTrafficMiddleware = store => next => action => {
   } else if (fetchName === 'mainTypeFetch') {
     store.dispatch(actions.receivePokeType(formatPokeType(data)))
     store.dispatch(actions.addActivePokeType(formatPokeType(data)))
-  }
- else if (fetchName === 'subTypeFetch') {
-  store.dispatch(actions.receivePokeType(formatPokeType(data)))
-  store.dispatch(actions.addActiveSubPokeType(formatPokeType(data)))
+  } else if (fetchName === 'subTypeFetch') {
+    store.dispatch(actions.receivePokeType(formatPokeType(data)))
+    store.dispatch(actions.addActiveSubPokeType(formatPokeType(data)))
   }
 }
 

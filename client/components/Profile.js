@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+// var imgg = require('../images/151.png');
+import loading from '../images/loading.gif';
+
 // you have to import react as long as it's a component
 // need to use class for instance for this, can't use extends Component because extends doesn't have autobinds
 
@@ -9,18 +12,24 @@ const Profile = React.createClass({
     // },
 
     render() {
-      console.log(this.props)
-      console.log(this.props.pokemon)
+
       var number = ""
       var weight = ""
       var height = ""
       var pokeType = ""
       var name = ""
-      if (this.props.pokemon.number) {
-         var {number, weight, height, pokeType, name} = this.props.pokemon
+
+
+      if ( (this.props.fetching) || (!this.props.pokemon.number) ) {
+        return <div></div>
+      } else {
+        var imageSRC = `http://veekun.com/dex/media/pokemon/global-link/${this.props.pokemon.number}.png`
+        var {number, weight, height, pokeType, name} = this.props.pokemon
       }
 
       var description = ""
+      var nor = "type-normal"
+
 
       if (this.props.pokemon.description) {
          var {description} = this.props.pokemon
@@ -29,13 +38,15 @@ const Profile = React.createClass({
       return (
         <div>
           <section className="clear row">
-          <div className="col-xs-12 col-lg-5 profile-image-holder">
-          <img src="http://veekun.com/dex/media/pokemon/global-link/143.png" alt="" />
+          <div className="col-xs-12 col-lg-5 text-align-center">
+          <img src={imageSRC} alt="" />
+          {/* <img src={loading} alt="" /> */}
+
           </div>
           <div className="attributes col-xs-12 col-lg-7">
           <p className="profile-num">#{number}</p>
-          <p className="profile-name">{name}</p>
-          <p className="profile-type type type-normal">Normal</p>
+          <p className="profile-name capitalize">{name}</p>
+          <p className="profile-type type type-normal">{pokeType}</p>
           <p className="weight">Weight: {weight/10} kg</p>
           <p>Height: {height/10} m</p>
           </div>

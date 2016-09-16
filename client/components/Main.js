@@ -4,7 +4,7 @@ import Title from './Title'
 import SearchableSearchBar from '../containers/SearchableSearchBar'
 import PopulatedProfile from '../containers/PopulatedProfile'
 import PopulatedTypeHolder from '../containers/PopulatedTypeHolder'
-import ClickedPokeList from '../containers/ClickedPokeList'
+import PopulatedPokeList from '../containers/PopulatedPokeList'
 
 const Main = () => (
   <div className="container">
@@ -16,7 +16,7 @@ const Main = () => (
     <article className="screen clearfix">
       <PopulatedProfile />
       <PopulatedTypeHolder />
-      <ClickedPokeList />
+      <PopulatedPokeList />
     </article>
   </div>
 )

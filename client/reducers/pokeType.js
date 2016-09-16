@@ -5,7 +5,7 @@ const initialState = {
   strongAgainst: []
 }
 
-const pokeType = function (state = initialState, action) {
+const pokeType = (state = initialState, action) => {
   switch (action.type) {
     case 'RECEIVE_POKE_TYPE':
       return {
@@ -17,7 +17,7 @@ const pokeType = function (state = initialState, action) {
   }
 }
 
-const pokeTypeArray = function (state = [], action) {
+const pokeTypeArray = (state = [], action) => {
   switch (action.type) {
     case 'RECEIVE_POKE_TYPE':
       return [

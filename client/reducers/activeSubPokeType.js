@@ -1,5 +1,5 @@
 // Holds pokemon of a certain pokeType and that pokeType's weaknesses &
-// strengths, but used to display only the former
+// strengths, but used to display only the former (as opposed to activePokeType)
 
 const initialState = {
   name: '',

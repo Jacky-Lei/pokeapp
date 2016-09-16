@@ -1,9 +1,9 @@
 const initialState = {
-  name: '',
-  weight: '',
-  height: '',
   number: '',
-  pokeType: ''
+  name: '',
+  pokeType: '',
+  weight: '',
+  height: ''
 }
 
 const pokemon = (state = initialState, action) => {
@@ -32,9 +32,7 @@ const pokemonArray = (state = [], action) => {
           pokemon(undefined, action)
         ]
       case 'RECEIVE_POKEMON_DESCRIPTION':
-        return state.map(function (p) {
-          return pokemon(p, action)
-        })
+        return state.map((p) => pokemon(p, action))
       default:
         return state
     }

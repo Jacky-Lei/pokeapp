@@ -1,76 +1,37 @@
-import React, { Component } from 'react';
-// var imgg = require('../images/151.png');
-import loading from '../images/loading.gif';
+import React from 'react'
 
-// you have to import react as long as it's a component
-// need to use class for instance for this, can't use extends Component because extends doesn't have autobinds
-
-// class SearchBar extends Component
 const Profile = React.createClass({
-    // componentWillUpdate () {
-    //
-    // },
+  render() {
+    if (
+      // Checks if there is active pokemon
+      (!this.props.pokemon.number) ||
+      (this.props.fetching.isFetching) ||
+      (this.props.fetching.error)
+    ) {
+      return <div></div>
+    }
 
-    render() {
+    let imageSRC = `http://veekun.com/dex/media/pokemon/global-link/${this.props.pokemon.number}.png`
+    let {number, name, pokeType, weight, height} = this.props.pokemon
+    let typeColor = `type-${pokeType}`
+    let description = (this.props.pokemon.description) ? this.props.pokemon.description : ""
 
-      var number = ""
-      var weight = ""
-      var height = ""
-      var pokeType = ""
-      var name = ""
-
-
-      if ( (this.props.fetching.isFetching) || (!this.props.pokemon.number) || (this.props.fetching.error)) {
-        return <div></div>
-      } else {
-        var imageSRC = `http://veekun.com/dex/media/pokemon/global-link/${this.props.pokemon.number}.png`
-        var {number, weight, height, pokeType, name} = this.props.pokemon
-      }
-
-      var description = ""
-      var nor = "type-normal"
-
-var classType = `type-${pokeType}`
-
-      if (this.props.pokemon.description) {
-         var {description} = this.props.pokemon
-      }
-
-      return (
-        <div>
-          <section className="clear row">
-          <div className="col-xs-12 col-lg-5 text-align-center">
-          <img src={imageSRC} alt="" />
-          {/* <img src={loading} alt="" /> */}
-
-          </div>
-          <div className="attributes col-xs-12 col-lg-7">
+    return (
+      <figure className="clear row">
+        <div className="col-xs-12 col-lg-5 text-align-center">
+          <img src={imageSRC} alt={`${name} image`} />
+        </div>
+        <div className="attributes col-xs-12 col-lg-7">
           <p className="profile-num top-bottom-margin ">#{number}</p>
           <p className="profile-name capitalize top-bottom-margin ">{name}</p>
-          <p className={`profile-type type top-bottom-margin ${classType}`}>{pokeType}</p>
+          <p className={`profile-type type top-bottom-margin ${typeColor} text-align-center`}>{pokeType}</p>
           <p className="weight top-bottom-margin ">Weight: {weight/10} kg</p>
           <p>Height: {height/10} m</p>
-          </div>
-          </section>
-          <section>
-          <p className="clear description">{description}</p>
-          </section>
         </div>
-      )
-    }
+        <figcaption className="clear description">{description}</figcaption>
+      </figure>
+    )
+  }
 })
 
-{/* <p className='awesome'>name: {name}</p>
-<p>number: {number}</p>
-<p>average weight: {weight/10} kg</p>
-<p>average height: {height/10} m</p>
-<p>type: {pokeType}</p>
-<p>description: {description}</p> */}
-
-{/* {this.props.selectedPokemon.name}
-{this.props.selectedPokemon.height}
-{this.props.selectedPokemon.weight} */}
-{/* {this.props.pokeType.damage_relations.double_damage_from[0].name} */}
-
-
-export default Profile;
+export default Profile

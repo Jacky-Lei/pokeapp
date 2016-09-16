@@ -1,23 +1,18 @@
 import { connect } from 'react-redux'
-import MiniPokeList from '../components/MiniPokeList'
 import { checkPokemonFetch, clearSubPokeType } from '../actions/actionCreators'
+import MiniPokeList from '../components/MiniPokeList'
 
-// can the state be a certain slice of state? or does it always have to be the whole store?
+const mapStateToProps = (state) => ({
+  miniPokemon: state.activeSubPokeType.pokemon,
+  fetching: state.fetching.isFetchingSub
+})
 
-const mapStateToProps = function (state) {
-  return {
-    miniPokemon: state.activeSubPokeType.pokemon,
-    fetching: state.fetching.isFetchingSub
+const mapDispatchToProps = (dispatch) => ({
+  onMiniPokemonClick: (pokemonName) => {
+    dispatch(checkPokemonFetch(pokemonName))
+    dispatch(clearSubPokeType())
   }
-}
-const mapDispatchToProps = function (dispatch) {
-  return {
-    onMiniPokemonClick: function (pokemonName) {
-      dispatch(checkPokemonFetch(pokemonName))
-      dispatch(clearSubPokeType())
-    }
-  }
-}
+})
 
 const ClickedPokeList = connect(
   mapStateToProps,

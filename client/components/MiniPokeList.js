@@ -1,22 +1,28 @@
-import React, { Component } from 'react'
-import MiniPokemon from './MiniPokemon'
+import React from 'react'
 import { extractPokeNum } from '../helpers/helpers'
-import loading from '../images/small.gif';
+import MiniPokemon from './MiniPokemon'
+import loading from '../images/loading.gif'
 
-const Type = ({onMiniPokemonClick, miniPokemon=[], fetching}) => {
-  var miniPokemonArr = []
-  if (miniPokemon) {
-    miniPokemonArr = miniPokemon.map(function (pokemonObj, idx) {
+const Type = ({onMiniPokemonClick, miniPokemon, fetching}) => {
+  let miniPokemonArr = []
+  if (miniPokemon.length !== 0) {
+    miniPokemonArr = miniPokemon.map((pokemonObj, idx) => {
+      // Pokemon url string contains Pokemon number
       const pokemonNumber = extractPokeNum(pokemonObj.pokemon.url)
-      console.log(pokemonNumber)
-      // need to grab number out of pokemonObj.pokemon.url
-      return (<MiniPokemon key={idx} name={pokemonObj.pokemon.name} pokemonNumber={pokemonNumber} onClick={() => onMiniPokemonClick(pokemonObj.pokemon.name)} />)
+      return (
+        <MiniPokemon
+          name={pokemonObj.pokemon.name}
+          pokemonNumber={pokemonNumber}
+          onClick={() => onMiniPokemonClick(pokemonObj.pokemon.name)}
+          key={idx}
+        />
+      )
     })
   }
   if (fetching) {
     return (
       <div className="text-align-center">
-        <img className="loading-small" src = {loading} alt="" />
+        <img className="loading-small" src={loading} alt="pokeball shaking loading gif" />
       </div>
     )
   } else {
@@ -29,6 +35,5 @@ const Type = ({onMiniPokemonClick, miniPokemon=[], fetching}) => {
     )
   }
 }
-
 
 export default Type

@@ -1,5 +1,5 @@
 {
-  "name": "learn-redux",
+  "name": "PokeApp",
   "version": "1.0.0",
   "description": ":) ",
   "scripts": {
@@ -12,11 +12,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wesbos/Learn-Redux.git"
+    "url": "https://github.com/Jacky-Lei/pokeapp"
   },
-  "author": "Wes Bos",
+  "author": "Jacky Lei",
   "license": "MIT",
-  "homepage": "https://github.com/wesbos/Learn-Redux",
+  "homepage": "https://github.com/Jacky-Lei/pokeapp",
   "dependencies": {
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",

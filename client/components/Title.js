@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
+import titleImage from '../images/title.png'
 
 const Title = () => (
-  <div className="pokedex-title col-md-4">
-      <img src="http://cdn.bulbagarden.net/upload/thumb/4/4b/Pok%C3%A9dex_logo.png/250px-Pok%C3%A9dex_logo.png" alt="Pokedex Title Logo" />
+  <div className="pokedex-title text-align-center col-md-4">
+      <img src={titleImage} alt="Pokedex Title Logo" />
   </div>
 )
 

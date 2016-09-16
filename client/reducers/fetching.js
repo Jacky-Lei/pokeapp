@@ -1,6 +1,13 @@
-// Prevents multiple fetches from multiple clicks
+// Prevents multiple fetches from multiple clicks during loading and determines
+// when loading gif is displayed
 
-const fetching = (state = { isFetching: false, isFetchingSub: false, error: '' }, action) => {
+const initialState = {
+  isFetching: false,
+  isFetchingSub: false,
+  error: ''
+}
+
+const fetching = (state = initialState, action) => {
   switch (action.type) {
     case 'REQUESTING':
       return {
@@ -41,25 +48,3 @@ const fetching = (state = { isFetching: false, isFetchingSub: false, error: '' }
 }
 
 export default fetching
-
-// const fetching = (state = { isFetching: false }, action) => {
-//   switch (action.type) {
-//     case 'REQUESTING':
-//       return {
-//         ...state,
-//         isFetching: true
-//       }
-//     case 'RECEIVE_POKE_TYPE':
-//     case 'ADD_ACTIVE_POKE_TYPE':
-//       return {
-//         ...state,
-//         isFetching: false
-//       }
-//     default:
-//       return state
-//   }
-// }
-//
-// export default fetching
-
-// can action creator dispatch twice?

@@ -10,8 +10,8 @@ Simply type in Pokemon name and hit enter to to learn more about your favorite P
 ![profileScreenshot]
 (http://res.cloudinary.com/akantoword/image/upload/v1474051783/Screen_Shot_2016-09-16_at_11.45.22_AM_ehw5ol.png)
 * Components are organized into two groups:
-1. (smart) containers that are connected to the store to transmit state changes & dispatches
-2. (dumb) presentational components that manage and display UI
+  * (smart) containers that are connected to the store to transmit state changes & dispatches
+  * (dumb) presentational components that manage and display UI
 * Incorporates Emmascript2015's latest features of destructuring, arrow function, and template strings to improve code legibility
 * Action creators align with reducers to cache data to remove redundant requests
 * Thunk and custom promise middlewares handles responses and errors

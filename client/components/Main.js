@@ -1,10 +1,10 @@
 import React from 'react'
-import CameraAndButtons from './CameraAndButtons'
-import Title from './Title'
-import SearchableSearchBar from '../containers/SearchableSearchBar'
-import PopulatedProfile from '../containers/PopulatedProfile'
-import PopulatedTypeHolder from '../containers/PopulatedTypeHolder'
-import PopulatedPokeList from '../containers/PopulatedPokeList'
+import CameraAndButtons from './presentational/CameraAndButtons'
+import Title from './presentational/Title'
+import SearchableSearchBar from './containers/SearchableSearchBar'
+import PopulatedProfile from './containers/PopulatedProfile'
+import PopulatedTypeHolder from './containers/PopulatedTypeHolder'
+import PopulatedPokeList from './containers/PopulatedPokeList'
 
 const Main = () => (
   <div className="container">

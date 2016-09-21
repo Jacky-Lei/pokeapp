@@ -1,6 +1,9 @@
 import React from 'react'
 
 const SearchBar = React.createClass({
+  propTypes: {
+    submitSearch: React.PropTypes.func.isRequired
+  },
   handleSubmit (event) {
     event.preventDefault()
     const formattedSearchString = this.refs.searchString.value.replace(/[^a-z]/gi, "").toLowerCase()

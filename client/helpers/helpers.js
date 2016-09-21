@@ -19,11 +19,7 @@ export const formatPokeType = (data) => ({
 })
 
 const removeDarkType = (arr) => (
-  arr.filter((obj) => {
-    if (obj.name !== 'dark'){
-      return (obj)
-    }
-  })
+  arr.filter((obj) => obj.name !== 'dark')
 )
 
 const selectThreeOriginalPokemon = (pokemonArray) => {

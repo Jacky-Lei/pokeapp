@@ -1,3 +1,5 @@
+import constants from '../constants/constants'
+
 const initialState = {
   name: '',
   pokemon: [],
@@ -7,7 +9,7 @@ const initialState = {
 
 const pokeType = (state = initialState, action) => {
   switch (action.type) {
-    case 'RECEIVE_POKE_TYPE':
+    case constants.RECEIVE_POKE_TYPE:
       return {
         ...state,
         ...action.data
@@ -19,7 +21,7 @@ const pokeType = (state = initialState, action) => {
 
 const pokeTypeArray = (state = [], action) => {
   switch (action.type) {
-    case 'RECEIVE_POKE_TYPE':
+    case constants.RECEIVE_POKE_TYPE:
       return [
         ...state,
         pokeType(undefined, action)

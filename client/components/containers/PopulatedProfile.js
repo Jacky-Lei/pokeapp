@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Profile from '../components/Profile'
+import Profile from '../presentational/Profile'
 
 const mapStateToProps = (state) => ({
   pokemon: state.activePokemon,

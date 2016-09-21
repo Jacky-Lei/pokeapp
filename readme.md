@@ -4,7 +4,7 @@
 [link]: http://jackylei.space/pokeapp/
 
 ## Overview
-Simply type in Pokemon name and hit enter to to learn more about your favorite Pokemon! This app is built on React, Redux, Emmascript2015, Bootstrap, Webpack, Babel, and a [RESTful Pokemon API][apiLink].
+Simply type in Pokemon name and hit enter to to learn more about your favorite Pokemon! This app is built on React, Redux, Ecmascript2015, Bootstrap, Webpack, Babel, and a [RESTful Pokemon API][apiLink].
 [apiLink]: https://pokeapi.co/
 
 ![profileScreenshot]
@@ -12,7 +12,26 @@ Simply type in Pokemon name and hit enter to to learn more about your favorite P
 * Components are organized into two groups:
   * (smart) containers that are connected to the store to transmit state changes & dispatches
   * (dumb) presentational components that manage and display UI
-* Incorporates Emmascript2015's latest features of destructuring, arrow function, and template strings to improve code legibility
+  * Example of smart component PopulatedPokeList:
+  ```javascript
+  const mapStateToProps = (state) => ({
+    miniPokemon: state.activeSubPokeType.pokemon,
+    fetching: state.fetching.isFetchingSub
+  })
+
+  const mapDispatchToProps = (dispatch) => ({
+    onMiniPokemonClick: (pokemonName) => {
+      dispatch(checkPokemonFetch(pokemonName))
+      dispatch(clearSubPokeType())
+    }
+  })
+
+  const PopulatedPokeList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(PokeList)
+  ```
+* Incorporates Ecmascript2015's latest features of destructuring, arrow function, and template strings to improve code legibility
 * Action creators align with reducers to cache data to remove redundant requests
 * Thunk and custom promise middlewares handles responses and errors
 * Custom traffic middleware chains requests or updates state accordingly

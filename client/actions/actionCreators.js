@@ -1,5 +1,6 @@
 import store from '../store'
 import _ from 'lodash/core'
+import constants from '../constants/constants'
 
 export const checkPokemonFetch = (pokemonName) => (dispatch) => {
   if (store.getState().fetching.isFetching) {return}
@@ -31,29 +32,29 @@ const activeTypeCheck = (activePokemon, storeState, dispatch) => {
 }
 
 export const addActivePokemon = (pokemon) => ({
-  type: 'ADD_ACTIVE_POKEMON',
+  type: constants.ADD_ACTIVE_POKEMON,
   data: pokemon
 })
 
 export const fetchPokemon = (pokemonName) => (dispatch) => {
-  dispatch({type: 'REQUESTING'})
+  dispatch({type: constants.REQUESTING})
   const requestURL = `http://pokeapi.co/api/v2/pokemon/${pokemonName}/`
-  dispatch({url: requestURL, fetchName: 'fetchPokemon', promise: true})
+  dispatch({url: requestURL, fetchName: constants.FETCH_POKEMON, promise: true})
 }
 
 export const receivePokemon = (data) => ({
   data: data,
-  type: 'RECEIVE_POKEMON'
+  type: constants.RECEIVE_POKEMON
 })
 
 export const fetchPokemonDescription = (pokemonName) => (dispatch) => {
   const requestURL = `http://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`
-  dispatch({url: requestURL, fetchName: 'fetchPokemonDescription', promise: true})
+  dispatch({url: requestURL, fetchName: constants.FETCH_DESCRIPTION, promise: true})
 }
 
 export const receivePokemonDescription = (data) => ({
   data: data,
-  type: 'RECEIVE_POKEMON_DESCRIPTION'
+  type: constants.RECEIVE_POKEMON_DESCRIPTION
 })
 
 export const checkPokeTypeFetch = (pokeType, subTypeFetch = false) => (dispatch) => {
@@ -79,30 +80,30 @@ export const fetchPokeType = (pokemonType, subTypeFetch) => {
   const requestURL = `http://pokeapi.co/api/v2/type/${pokemonType}/`
   return (dispatch) => {
     if (subTypeFetch) {
-      dispatch({type: 'REQUESTING_SUB'})
-      dispatch({url: requestURL, fetchName: "subTypeFetch", promise: true})
+      dispatch({type: constants.REQUESTING_SUB_POKE_TYPE})
+      dispatch({url: requestURL, fetchName: constants.SUB_TYPE_FETCH, promise: true})
     } else {
-      dispatch({type: 'REQUESTING'})
-      dispatch({url: requestURL, fetchName: "mainTypeFetch", promise: true})
+      dispatch({type: constants.REQUESTING})
+      dispatch({url: requestURL, fetchName: constants.MAIN_TYPE_FETCH, promise: true})
     }
   }
 }
 
 export const addActivePokeType = (pokeType) => ({
-  type: 'ADD_ACTIVE_POKE_TYPE',
+  type: constants.ADD_ACTIVE_POKE_TYPE,
   data: pokeType
 })
 
 export const addActiveSubPokeType = (pokeType) => ({
-  type: 'ADD_ACTIVE_SUB_POKE_TYPE',
+  type: constants.ADD_ACTIVE_SUB_POKE_TYPE,
   data: pokeType
 })
 
 export const clearSubPokeType = () => ({
-  type: 'CLEAR_SUB_POKE_TYPE',
+  type: constants.CLEAR_SUB_POKE_TYPE
 })
 
 export const receivePokeType = (data) => ({
   data: data,
-  type: 'RECEIVE_POKE_TYPE'
+  type: constants.RECEIVE_POKE_TYPE
 })

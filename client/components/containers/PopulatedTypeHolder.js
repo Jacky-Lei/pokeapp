@@ -1,6 +1,6 @@
-import { checkPokeTypeFetch } from '../actions/actionCreators'
+import { checkPokeTypeFetch } from '../../actions/actionCreators'
 import { connect } from 'react-redux'
-import TypeHolder from '../components/TypeHolder'
+import TypeHolder from '../presentational/TypeHolder'
 
 const mapStateToProps = (state) => ({
   pokeType: state.activePokeType,

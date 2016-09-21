@@ -12,4 +12,10 @@ const MiniPokemon = ({name, pokemonNumber, onClick}) => {
   )
 }
 
+MiniPokemon.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  pokemonNumber: React.PropTypes.string.isRequired,
+  onClick: React.PropTypes.func.isRequired
+}
+
 export default MiniPokemon

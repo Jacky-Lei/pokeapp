@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { checkPokemonFetch, clearSubPokeType } from '../actions/actionCreators'
-import PokeList from '../components/PokeList'
+import { checkPokemonFetch, clearSubPokeType } from '../../actions/actionCreators'
+import PokeList from '../presentational/PokeList'
 
 const mapStateToProps = (state) => ({
   miniPokemon: state.activeSubPokeType.pokemon,

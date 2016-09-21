@@ -1,9 +1,9 @@
 import React from 'react'
-import { extractPokeNum } from '../helpers/helpers'
+import { extractPokeNum } from '../../helpers/helpers'
 import MiniPokemon from './MiniPokemon'
-import loading from '../images/loading.gif'
+import loading from '../../images/loading.gif'
 
-const PokeList = ({onMiniPokemonClick, miniPokemon, fetching}) => {
+const PokeList = ({fetching, miniPokemon, onMiniPokemonClick }) => {
   let miniPokemonArr = []
   if (miniPokemon.length !== 0) {
     miniPokemonArr = miniPokemon.map((pokemonObj, idx) => {
@@ -34,6 +34,12 @@ const PokeList = ({onMiniPokemonClick, miniPokemon, fetching}) => {
       </section>
     )
   }
+}
+
+PokeList.propTypes = {
+  fetching: React.PropTypes.bool.isRequired,
+  miniPokemon: React.PropTypes.array.isRequired,
+  onMiniPokemonClick: React.PropTypes.func.isRequired
 }
 
 export default PokeList

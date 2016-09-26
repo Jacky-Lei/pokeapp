@@ -51,6 +51,13 @@ table {
 	border-spacing: 0;
 }
 
+/*fixes pseudo :after & :before bugs in Safari*/
+
+.row:before,
+.row:after {
+    display: none;
+}
+
 /*PLACEHOLDER SETTINGS*/
 
 ::-webkit-input-placeholder {

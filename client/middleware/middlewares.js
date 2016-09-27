@@ -46,23 +46,4 @@ export const dataTrafficMiddleware = store => next => action => {
       store.dispatch(actions.receivePokeType(formatPokeType(data)))
       store.dispatch(actions.addActiveSubPokeType(formatPokeType(data)))
   }
-
-
-
-  // if (fetchName === 'fetchPokemon') {
-  //   next(actions.receivePokemon(formatPokemonData(data)))
-  //   store.dispatch(actions.fetchPokemonDescription(data.name))
-  // } else if (fetchName === 'fetchPokemonDescription') {
-  //   store.dispatch(actions.receivePokemonDescription(formatDescription(data)))
-  //   store.dispatch(actions.addActivePokemon(store.getState().pokemonArray.filter((p) => (
-  //     p.name === data.name
-  //   ))[0]))
-  //   store.dispatch(actions.checkPokeTypeCache(store.getState().activePokemon.pokeType))
-  // } else if (fetchName === 'mainTypeFetch') {
-  //   store.dispatch(actions.receivePokeType(formatPokeType(data)))
-  //   store.dispatch(actions.addActivePokeType(formatPokeType(data)))
-  // } else if (fetchName === 'subTypeFetch') {
-  //   store.dispatch(actions.receivePokeType(formatPokeType(data)))
-  //   store.dispatch(actions.addActiveSubPokeType(formatPokeType(data)))
-  // }
 }

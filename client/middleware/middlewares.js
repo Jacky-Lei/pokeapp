@@ -32,18 +32,18 @@ export const dataTrafficMiddleware = store => next => action => {
       store.dispatch(actions.fetchPokemonDescription(data.name))
       break
     case constants.FETCH_DESCRIPTION:
-      store.dispatch(actions.receivePokemonDescription(formatDescription(data)))
-      store.dispatch(actions.addActivePokemon(store.getState().pokemonArray.filter((p) => (
+      next(actions.receivePokemonDescription(formatDescription(data)))
+      next(actions.addActivePokemon(store.getState().pokemonArray.filter((p) => (
         p.name === data.name
       ))[0]))
       store.dispatch(actions.checkPokeTypeCache(store.getState().activePokemon.pokeType))
       break
     case constants.MAIN_TYPE_FETCH:
-      store.dispatch(actions.receivePokeType(formatPokeType(data)))
-      store.dispatch(actions.addActivePokeType(formatPokeType(data)))
+      next(actions.receivePokeType(formatPokeType(data)))
+      next(actions.addActivePokeType(formatPokeType(data)))
       break
     case constants.SUB_TYPE_FETCH:
-      store.dispatch(actions.receivePokeType(formatPokeType(data)))
-      store.dispatch(actions.addActiveSubPokeType(formatPokeType(data)))
+      next(actions.receivePokeType(formatPokeType(data)))
+      next(actions.addActiveSubPokeType(formatPokeType(data)))
   }
 }

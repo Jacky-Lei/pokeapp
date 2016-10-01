@@ -16,6 +16,8 @@ const constants = {
 
   CLEAR_SUB_POKE_TYPE: 'CLEAR_SUB_POKE_TYPE',
 
+  END_FETCH: 'END_FETCH',
+
 // Traffic Middleware Constants
   FETCH_POKEMON: 'FETCH_POKEMON',
   FETCH_DESCRIPTION: 'FETCH_DESCRIPTION',

@@ -11,6 +11,7 @@ const initialState = {
 const fetching = (state = initialState, action) => {
   switch (action.type) {
     case constants.REQUESTING:
+    case constants.ADD_ACTIVE_POKEMON:
       return {
         ...state,
         isFetching: true,
@@ -22,6 +23,7 @@ const fetching = (state = initialState, action) => {
         isFetchingSub: true,
         error: ''
       }
+    case constants.END_FETCH:
     case constants.ADD_ACTIVE_POKE_TYPE:
     case constants.ADD_ACTIVE_SUB_POKE_TYPE:
       return {

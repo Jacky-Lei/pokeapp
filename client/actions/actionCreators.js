@@ -2,16 +2,16 @@ import store from '../store'
 import _ from 'lodash/core'
 import constants from '../constants/constants'
 
-export const checkPokemonFetch = (pokemonName) => (dispatch) => {
+export const checkPokemonFetch = pokemonName => dispatch => {
   if (store.getState().fetching.isFetching) {return}
   dispatch(checkPokemonCache(pokemonName))
 }
 
-const checkPokemonCache = (pokemonName) => (dispatch) => {
+const checkPokemonCache = pokemonName => dispatch => {
   const storeState = store.getState()
   const activePokemon = _.find(
     storeState.pokemonArray,
-    (pokemonObj) => pokemonObj.name === pokemonName
+    pokemonObj => pokemonObj.name === pokemonName
   )
   if (activePokemon) {
     dispatch(addActivePokemon(activePokemon))
@@ -25,10 +25,11 @@ const activeTypeCheck = (activePokemon, storeState, dispatch) => {
   if (activePokemon.pokeType !== storeState.activePokeType.name) {
     const activePokeType = _.find(
       storeState.pokeTypeArray,
-      (pokeTypeObj) => pokeTypeObj.name === activePokemon.pokeType
+      pokeTypeObj => pokeTypeObj.name === activePokemon.pokeType
     )
     dispatch(addActivePokeType(activePokeType))
   }
+  dispatch({type: constants.END_FETCH})
 }
 
 export const addActivePokemon = (pokemon) => ({
@@ -36,36 +37,36 @@ export const addActivePokemon = (pokemon) => ({
   data: pokemon
 })
 
-export const fetchPokemon = (pokemonName) => (dispatch) => {
+export const fetchPokemon = pokemonName => dispatch => {
   dispatch({type: constants.REQUESTING})
   const requestURL = `http://pokeapi.co/api/v2/pokemon/${pokemonName}/`
   dispatch({url: requestURL, fetchName: constants.FETCH_POKEMON, promise: true})
 }
 
-export const receivePokemon = (data) => ({
+export const receivePokemon = data => ({
   data: data,
   type: constants.RECEIVE_POKEMON
 })
 
-export const fetchPokemonDescription = (pokemonName) => (dispatch) => {
+export const fetchPokemonDescription = pokemonName => dispatch => {
   const requestURL = `http://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`
   dispatch({url: requestURL, fetchName: constants.FETCH_DESCRIPTION, promise: true})
 }
 
-export const receivePokemonDescription = (data) => ({
+export const receivePokemonDescription = data => ({
   data: data,
   type: constants.RECEIVE_POKEMON_DESCRIPTION
 })
 
-export const checkPokeTypeFetch = (pokeType, subTypeFetch = false) => (dispatch) => {
+export const checkPokeTypeFetch = (pokeType, subTypeFetch = false) => dispatch => {
   if (store.getState().fetching.isFetching) {return}
   dispatch(checkPokeTypeCache(pokeType, subTypeFetch))
 }
 
-export const checkPokeTypeCache = (pokeTypeName, subTypeFetch) => (dispatch) => {
+export const checkPokeTypeCache = (pokeTypeName, subTypeFetch) => dispatch => {
   const cachedPokeType = _.find(
     store.getState().pokeTypeArray,
-    (pokeTypeObj) => pokeTypeObj.name === pokeTypeName
+    pokeTypeObj => pokeTypeObj.name === pokeTypeName
   )
   if ((cachedPokeType) && (!subTypeFetch)) {
     dispatch(addActivePokeType(cachedPokeType))
@@ -78,7 +79,7 @@ export const checkPokeTypeCache = (pokeTypeName, subTypeFetch) => (dispatch) => 
 
 export const fetchPokeType = (pokemonType, subTypeFetch) => {
   const requestURL = `http://pokeapi.co/api/v2/type/${pokemonType}/`
-  return (dispatch) => {
+  return dispatch => {
     if (subTypeFetch) {
       dispatch({type: constants.REQUESTING_SUB_POKE_TYPE})
       dispatch({url: requestURL, fetchName: constants.SUB_TYPE_FETCH, promise: true})
@@ -89,12 +90,12 @@ export const fetchPokeType = (pokemonType, subTypeFetch) => {
   }
 }
 
-export const addActivePokeType = (pokeType) => ({
+export const addActivePokeType = pokeType => ({
   type: constants.ADD_ACTIVE_POKE_TYPE,
   data: pokeType
 })
 
-export const addActiveSubPokeType = (pokeType) => ({
+export const addActiveSubPokeType = pokeType => ({
   type: constants.ADD_ACTIVE_SUB_POKE_TYPE,
   data: pokeType
 })
@@ -103,7 +104,7 @@ export const clearSubPokeType = () => ({
   type: constants.CLEAR_SUB_POKE_TYPE
 })
 
-export const receivePokeType = (data) => ({
+export const receivePokeType = data => ({
   data: data,
   type: constants.RECEIVE_POKE_TYPE
 })

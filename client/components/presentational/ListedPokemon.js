@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MiniPokemon = ({name, pokemonNumber, onClick}) => {
+const ListedPokemon = ({name, pokemonNumber, onClick}) => {
   const imageSRC = `http://veekun.com/dex/media/pokemon/global-link/${pokemonNumber}.png`
   return (
     <li className="col-xs-12 col-md-4 mini-pokemon text-align-center" onClick={onClick}>
@@ -12,10 +12,10 @@ const MiniPokemon = ({name, pokemonNumber, onClick}) => {
   )
 }
 
-MiniPokemon.propTypes = {
+ListedPokemon.propTypes = {
   name: React.PropTypes.string.isRequired,
   pokemonNumber: React.PropTypes.string.isRequired,
   onClick: React.PropTypes.func.isRequired
 }
 
-export default MiniPokemon
+export default ListedPokemon

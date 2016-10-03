@@ -15,12 +15,12 @@ Simply type in Pokemon name and hit enter to to learn more about your favorite P
   * Example of smart component PopulatedPokeList:
   ```javascript
   const mapStateToProps = (state) => ({
-    miniPokemon: state.activeSubPokeType.pokemon,
+    listedPokemon: state.activeSubPokeType.pokemon,
     fetching: state.fetching.isFetchingSub
   })
 
   const mapDispatchToProps = (dispatch) => ({
-    onMiniPokemonClick: (pokemonName) => {
+    onListedPokemonClick: (pokemonName) => {
       dispatch(checkPokemonFetch(pokemonName))
       dispatch(clearSubPokeType())
     }

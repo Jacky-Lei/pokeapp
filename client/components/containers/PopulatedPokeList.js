@@ -3,12 +3,12 @@ import { checkPokemonFetch, clearSubPokeType } from '../../actions/actionCreator
 import PokeList from '../presentational/PokeList'
 
 const mapStateToProps = (state) => ({
-  miniPokemon: state.activeSubPokeType.pokemon,
+  listedPokemon: state.activeSubPokeType.pokemon,
   fetching: state.fetching.isFetchingSub
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onMiniPokemonClick: (pokemonName) => {
+  onListedPokemonClick: (pokemonName) => {
     dispatch(checkPokemonFetch(pokemonName))
     dispatch(clearSubPokeType())
   }

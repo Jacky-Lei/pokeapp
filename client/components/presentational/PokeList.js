@@ -1,19 +1,19 @@
 import React from 'react'
 import { extractPokeNum } from '../../helpers/helpers'
-import MiniPokemon from './MiniPokemon'
+import ListedPokemon from './ListedPokemon'
 import loading from '../../images/loading.gif'
 
-const PokeList = ({fetching, miniPokemon, onMiniPokemonClick }) => {
-  let miniPokemonArr = []
-  if (miniPokemon.length !== 0) {
-    miniPokemonArr = miniPokemon.map((pokemonObj, idx) => {
+const PokeList = ({fetching, listedPokemon, onListedPokemonClick }) => {
+  let listedPokemonArr = []
+  if (listedPokemon.length !== 0) {
+    listedPokemonArr = listedPokemon.map((pokemonObj, idx) => {
       // Pokemon url string contains Pokemon number
       const pokemonNumber = extractPokeNum(pokemonObj.pokemon.url)
       return (
-        <MiniPokemon
+        <ListedPokemon
           name={pokemonObj.pokemon.name}
           pokemonNumber={pokemonNumber}
-          onClick={() => onMiniPokemonClick(pokemonObj.pokemon.name)}
+          onClick={() => onListedPokemonClick(pokemonObj.pokemon.name)}
           key={idx}
         />
       )
@@ -29,7 +29,7 @@ const PokeList = ({fetching, miniPokemon, onMiniPokemonClick }) => {
     return (
       <section className="col-xs-12">
         <ul className="row">
-          {miniPokemonArr}
+          {listedPokemonArr}
         </ul>
       </section>
     )
@@ -38,8 +38,8 @@ const PokeList = ({fetching, miniPokemon, onMiniPokemonClick }) => {
 
 PokeList.propTypes = {
   fetching: React.PropTypes.bool.isRequired,
-  miniPokemon: React.PropTypes.array.isRequired,
-  onMiniPokemonClick: React.PropTypes.func.isRequired
+  listedPokemon: React.PropTypes.array.isRequired,
+  onListedPokemonClick: React.PropTypes.func.isRequired
 }
 
 export default PokeList

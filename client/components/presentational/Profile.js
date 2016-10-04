@@ -2,15 +2,15 @@ import React from 'react'
 
 const Profile = React.createClass({
   render() {
-    const {pokemon: {number}, fetching: {isFetching, error}} = this.props
+    const {data: {activePokemon: {number}, fetching: {isFetching, error}}} = this.props
+
     if ( (!number) || (isFetching) || (error) ){
       return <div></div>
     }
 
-    const imageSRC = `http://veekun.com/dex/media/pokemon/global-link/${this.props.pokemon.number}.png`
-    const {name, pokeType, weight, height} = this.props.pokemon
+    const imageSRC = `http://veekun.com/dex/media/pokemon/global-link/${number}.png`
+    const {name, pokeType, weight, height, description} = this.props.data.activePokemon
     const typeColor = `type-${pokeType}`
-    const description = (this.props.pokemon.description) ? this.props.pokemon.description : ""
 
     return (
       <figure className="clear row">
@@ -31,18 +31,20 @@ const Profile = React.createClass({
 })
 
 Profile.propTypes = {
-  pokemon: React.PropTypes.shape({
-    number: React.PropTypes.number,
-    name: React.PropTypes.string,
-    pokeType: React.PropTypes.string,
-    weight: React.PropTypes.number,
-    height: React.PropTypes.number,
-    description: React.PropTypes.string,
-  }),
-  fetching: React.PropTypes.shape({
-    isFetching: React.PropTypes.bool,
-    error: React.PropTypes.string
-  })
+  data: React.PropTypes.shape({
+    activePokemon: React.PropTypes.shape({
+      number: React.PropTypes.number,
+      name: React.PropTypes.string,
+      pokeType: React.PropTypes.string,
+      weight: React.PropTypes.number,
+      height: React.PropTypes.number,
+      description: React.PropTypes.string,
+    }).isRequired,
+    fetching: React.PropTypes.shape({
+      isFetching: React.PropTypes.bool.isRequired,
+      error: React.PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
 }
 
 export default Profile

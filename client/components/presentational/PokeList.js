@@ -3,10 +3,10 @@ import { extractPokeNum } from '../../helpers/helpers'
 import ListedPokemon from './ListedPokemon'
 import loading from '../../images/loading.gif'
 
-const PokeList = ({fetching, listedPokemon, onListedPokemonClick }) => {
+const PokeList = ({data: {fetching:{isFetchingSub}, activeSubPokeType:{pokemon}}, onListedPokemonClick }) => {
   let listedPokemonArr = []
-  if (listedPokemon.length !== 0) {
-    listedPokemonArr = listedPokemon.map((pokemonObj, idx) => {
+  if (pokemon.length !== 0) {
+    listedPokemonArr = pokemon.map((pokemonObj, idx) => {
       // Pokemon url string contains Pokemon number
       const pokemonNumber = extractPokeNum(pokemonObj.pokemon.url)
       return (
@@ -19,7 +19,7 @@ const PokeList = ({fetching, listedPokemon, onListedPokemonClick }) => {
       )
     })
   }
-  if (fetching) {
+  if (isFetchingSub) {
     return (
       <div className="text-align-center">
         <img className="loading-small" src={loading} alt="pokeball shaking loading gif" />
@@ -37,8 +37,14 @@ const PokeList = ({fetching, listedPokemon, onListedPokemonClick }) => {
 }
 
 PokeList.propTypes = {
-  fetching: React.PropTypes.bool.isRequired,
-  listedPokemon: React.PropTypes.array.isRequired,
+  data: React.PropTypes.shape({
+    fetching: React.PropTypes.shape({
+      isFetchingSub: React.PropTypes.bool.isRequired
+    }).isRequired,
+    activeSubPokeType: React.PropTypes.shape({
+      pokemon: React.PropTypes.array.isRequired
+    }).isRequired
+  }).isRequired,
   onListedPokemonClick: React.PropTypes.func.isRequired
 }
 

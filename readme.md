@@ -12,24 +12,28 @@ Simply type in Pokemon name and hit enter to to learn more about your favorite P
 * Components are organized into two groups:
   * (smart) containers that are connected to the store to transmit state changes & dispatches
   * (dumb) presentational components that manage and display UI
-  * Example of smart component PopulatedPokeList:
+  * Example of smart component PopulatedScreen:
   ```javascript
-  const mapStateToProps = (state) => ({
-    listedPokemon: state.activeSubPokeType.pokemon,
-    fetching: state.fetching.isFetchingSub
+  const mapStateToProps = state => ({
+    data: state
   })
 
-  const mapDispatchToProps = (dispatch) => ({
-    onListedPokemonClick: (pokemonName) => {
+  const mapDispatchToProps = dispatch => ({
+    onTypeClick: typeName => {
+      dispatch(checkPokeTypeFetch(typeName, true))
+    },
+    onListedPokemonClick: pokemonName => {
       dispatch(checkPokemonFetch(pokemonName))
       dispatch(clearSubPokeType())
     }
   })
 
-  const PopulatedPokeList = connect(
+  const PopulatedScreen = connect(
     mapStateToProps,
     mapDispatchToProps
-  )(PokeList)
+  )(Screen)
+
+  export default PopulatedScreen
   ```
 * Incorporates Ecmascript2015's latest features of destructuring, arrow function, and template strings to improve code legibility
 * Action creators align with reducers to cache data to remove redundant requests

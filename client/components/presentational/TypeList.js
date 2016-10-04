@@ -37,9 +37,9 @@ const TypeList = ({info, activeSubPokeType, onClick}) => {
 TypeList.propTypes = {
   info: React.PropTypes.arrayOf(
     React.PropTypes.shape({
-      name: React.PropTypes.string,
-      url: React.PropTypes.string
-    })
+      name: React.PropTypes.string.isRequired,
+      url: React.PropTypes.string.isRequired
+    }).isRequired
   ).isRequired,
   activeSubPokeType: React.PropTypes.string.isRequired,
   onClick: React.PropTypes.func.isRequired

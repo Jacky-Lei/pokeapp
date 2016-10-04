@@ -2,9 +2,7 @@ import React from 'react'
 import CameraAndButtons from './presentational/CameraAndButtons'
 import Title from './presentational/Title'
 import SearchableSearchBar from './containers/SearchableSearchBar'
-import PopulatedProfile from './containers/PopulatedProfile'
-import PopulatedTypeHolder from './containers/PopulatedTypeHolder'
-import PopulatedPokeList from './containers/PopulatedPokeList'
+import PopulatedScreen from './containers/PopulatedScreen'
 
 const Main = () => (
   <div className="container">
@@ -13,11 +11,7 @@ const Main = () => (
       <Title />
       <SearchableSearchBar />
     </div>
-    <article className="screen clearfix">
-      <PopulatedProfile />
-      <PopulatedTypeHolder />
-      <PopulatedPokeList />
-    </article>
+    <PopulatedScreen />
   </div>
 )
 
